@@ -14,21 +14,45 @@ Therefore, leveraging PostgreSQL, R, and Python, I've curated the insights prese
 
 The data exported to a csv file from [chessinsights.xyz](https://chessinsights.xyz/) contains the following columns (I call it columns for now as its a raw data not yet extracted, transformmed nor loaded):
 
-The raw data file looks like as follows
+The raw data includes the following columns:
+userAccuracy	opponentAccuracy	gameUrl	gameId	timeClass	fen	userColor	userRating	opponent	opponentRating	opponentUrl	result	wonBy	date	openingUrl	opening	startTime	endTime	outcome	moveCount
 
-The raw data includes:
-- userAccuracy
-- opponentAccuracy
-- gameURL
-- gameID
-- timeClass
-- fen
-- userColor
-- userRating
-- opponent
-- opponentRating
-- opponent
+- userAccuracy: Accuracy of the player
+- opponentAccuracy: Accuracy of the opponent
+- gameURL: reference to the specific game played
+- gameID: reference to the game ID
+- timeClass: the type of game, whether its rapid (a 10-minute long game), blitz (a 3-minute long game) or bullet (a 1-minute long game)
+- userColor: the color the player Played
+- userRating: the chess performance rating of the player. For reference on how it is calculated, please refer to [chess.com/ratings](https://www.chess.com/terms/chess-ratings#:~:text=The%20Glicko%20system%E2%80%94used%20on,when%20calculating%20each%20player's%20rating.) For your reference, the greatest chess player of all time, Magnus Carlsen, is rated 2830 as of March 1st, 2024. I was rated 962 in the same day. So you can imaging the performance difference.
+- opponent: shows the opponents userID
+- opponentRating: Shows opponents ratings
+- opponentUrl: Gives the link to the opponents page
+- result: win, loss or draw of the game
+- date: date of the mae played
+- openingURL: the Url that shows the theoritical opening moves
+- opening: The type of opening
+- startTime: when the live game started
+- endTime: when the live game ended
+- pgn: all the moves of the particular game played
+- moveCount: how many moves the whole game took
+- outcome: what the outcome of the game was, whether it was a checkmate, abandonment, resignation or draw.
 
+The explorable data includes:
+- Date	
+- TimeClass
+- Color
+- Result
+- Rating
+- Moves
+- Accuracy
+- Outcome
+- Opening
+- Opponent
+- GameUrl Sort Ascending 
+
+However the raw data is just a complete mess, that I needed to transform. 
+
+According to [chess.com/accuracy_blog](https://support.chess.com/article/1135-what-is-accuracy-in-analysis-how-is-it-measured#:~:text=Your%20Accuracy%20is%20a%20measurement,as%20determined%20by%20the%20engine.), Your accuracy is a measurement of how closely you played to what the computer has determined to be the best possible play against your opponent's specific moves. The closer you are to 100, the closer you are to 'perfect' play, as determined by the engine. 
 
 Methodology
 3.1 Tools and Technologies
