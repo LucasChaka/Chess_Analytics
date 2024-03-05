@@ -1,4 +1,4 @@
-# Chess Analytics: Data Analytics for chess skill enhancement
+# Chess Analytics 1.0: Data Analytics to Enhance Chess Skills
 
 Executive Summary
 
