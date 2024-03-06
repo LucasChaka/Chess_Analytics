@@ -16,42 +16,32 @@ The data needed is a history of live chess game plays played through two players
 Two data were initially downloaded in a csv format from [chessinsights.xyz](https://chessinsights.xyz/), a raw data and a relatively cleaner raw data. The differences between the two are, the raw data conains so much more redundant information than the explorable data yet at the same time has no information loaded in some of the most important columns for analysis. For example, the column *result* doesn't show the win, loss or draw but shows the outcome of the game without specifying who checkmated who, who resigned and so on. That is something, that should be extracted by treating the two data as relational data. 
 The data exported to a csv file from [chessinsights.xyz](https://chessinsights.xyz/) contains the following columns (I call it columns for now as its a raw data have not yet went through ETL processes.):
 
-The raw data includes the following columns:
+Table 1: A Summarization of Chess Game Data 
 
-- userAccuracy: Accuracy of the player
-According to [chess.com/accuracy_blog](https://support.chess.com/article/1135-what-is-accuracy-in-analysis-how-is-it-measured#:~:text=Your%20Accuracy%20is%20a%20measurement,as%20determined%20by%20the%20engine.), Your accuracy is a measurement of how closely you played to what the computer has determined to be the best possible play against your opponent's specific moves. The closer you are to 100, the closer you are to 'perfect' play, as determined by the engine.
-- opponentAccuracy: Accuracy of the opponent
-- gameURL: reference to the specific game played
-- gameID: reference to the game ID
-- timeClass: the type of game, whether its rapid (a 10-minute long game), blitz (a 3-minute long game) or bullet (a 1-minute long game)
-- fen: a serial key of each game played
-- userColor: the color the player Played
-- userRating: the chess performance rating of the player. For reference on how it is calculated, please refer to [chess.com/ratings](https://www.chess.com/terms/chess-ratings#:~:text=The%20Glicko%20system%E2%80%94used%20on,when%20calculating%20each%20player's%20rating.) For your reference, the greatest chess player of all time, Magnus Carlsen, is rated 2830 as of March 1st, 2024. I was rated 962 in the same day. So you can imaging the performance difference.
-- opponent: shows the opponents userID
-- opponentRating: Shows opponents ratings
-- opponentUrl: Gives the link to the opponents page
-- result: win, loss or draw of the game
-- date: date of the mae played
-- openingURL: the Url that shows the theoritical opening moves
-- opening: The type of opening
-- startTime: when the live game started
-- endTime: when the live game ended
-- pgn: all the moves of the particular game played
-- moveCount: how many moves the whole game took
-- outcome: what the outcome of the game was, whether it was a checkmate, abandonment, resignation or draw.
+| Raw Data Column     | Explorable Data Column | Explanation                                                                                                                 |
+|----------------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| userAccuracy         | Accuracy                | Accuracy of the player, representing how closely they played to the best possible moves as determined by the engine.       |
+| opponentAccuracy     | -                        | Accuracy of the opponent, representing how closely they played to the best possible moves as determined by the engine.     |
+| gameURL              | GameUrl                 | Reference to the specific game played.                                                                                     |
+| gameID               | -                      | Reference to the game ID.                                                                                                   |
+| timeClass            | TimeClass               | The type of game, whether it's rapid (a 10-minute long game), blitz (a 3-minute long game), or bullet (a 1-minute long game). |
+| fen                  | -                      | A serial key of each game played.                                                                                          |
+| userColor            | Color                   | The color the player played, either white or black.                                                                        |
+| userRating           | Rating                  | The chess performance rating of the player.                                                                                |
+| opponent             | Opponent                | The opponent's userID.                                                                                                     |
+| opponentRating       | -                      | The opponent's ratings.                                                                                                    |
+| opponentUrl          | -                      | Gives the link to the opponent's page.                                                                                     |
+| result               | Result                  | The outcome of the game: win, loss, or draw.                                                                               |
+| date                 | Date                    | Date of the game played.                                                                                                   |
+| openingURL           | -                      | The URL that shows the theoretical opening moves.                                                                          |
+| opening              | Opening                 | The type of opening used in the game.                                                                                      |
+| startTime            | -                      | When the live game started.                                                                                                |
+| endTime              | -                      | When the live game ended.                                                                                                  |
+| pgn                  | Moves                   | All the moves of the particular game played.                                                                               |
+| moveCount            | -                      | How many moves the whole game took.                                                                                        |
+| outcome              | Outcome                 | The specific outcome of the game, such as checkmate, abandonment, resignation, or draw.                                    |
 
-The explorable data includes:
-- Date	
-- TimeClass
-- Color
-- Result
-- Rating
-- Moves
-- Accuracy
-- Outcome
-- Opening
-- Opponent
-- GameUrl Sort Ascending 
+Source: [chessinsights.xyz](https://chessinsights.xyz/), [chess.com/ratings](https://www.chess.com/terms/chess-ratings#:~:text=The%20Glicko%20system%E2%80%94used%20on,when%20calculating%20each%20player's%20rating.), [chess.com/accuracy_blog](https://support.chess.com/article/1135-what-is-accuracy-in-analysis-how-is-it-measured#:~:text=Your%20Accuracy%20is%20a%20measurement,as%20determined%20by%20the%20engine.) 
 
 However the raw data is just a complete mess, that I needed to transform. Once the data is imported to my local file. It should be important to create a database in SQL. Best way I found to do that is through R-studio. The argument is simple, it's much easier to create the [database in R](**R code for creating the database linke here), export it and when I need to do quantitative analysis, I could just import the database and extract the table that I need for further analysis. Although, it is also possible to do so in Python.
 
@@ -71,7 +61,7 @@ According to [live.chess](https://support.chess.com/article/330-why-are-there-di
 
 Between the dates of June 27th, 2018 and March 2nd, 2024, I have played 2405 live games in total. Among the out of the 2405 total games, 64 games were dedicated to blitz games, 2336 were dedicated to rapid games and 5 to bullets. 97.13 % of all live games were 10 minutes. 
 
-Table 1: Summary of Live Chess Game Types Played
+Table 2: Summary of Live Chess Game Types Played
 
 | game_amount | game_type | percentage |
 |-------------|-----------|------------|
