@@ -55,7 +55,7 @@ The explorable data includes:
 
 However the raw data is just a complete mess, that I needed to transform. Once the data is imported to my local file. It should be important to create a database in SQL. Best way I found to do that is through R-studio. The argument is simple, it's much easier to create the [database in R](**R code for creating the database linke here), export it and when I need to do quantitative analysis, I could just import the database and extract the table that I need for further analysis. Although, it is also possible to do so in Python.
 
-### A bit of data exploration
+### A basic data exploration
 
 Both the raw data and the explorable data have the same number of rows. Theere are no missing values of the important columns that are needed for analysis. However, columns like *accuracy*, *userAccuracy*, or *opponentAccuracy* have missing values. The reason for the missing value is due to two reasons
           - the payment subscription needed to show those measurements. Meaning that I have do not have premium subscription to [chess.com](https://www.chess.com/), then I can't access how my accuracy measures against my opponent
@@ -81,7 +81,24 @@ Table 1: Summary of Live Chess Game Types Played
 
 Source: [SQL code page]
 
+Therefore, it would be easier to focus on the rapid games, for a more understanding of my own game play. 
 
+## Detailed data exploration
+
+To explore the data thoroghly, without complicated analysis. I ask the following questions; What were my Elo ratings as both white and black, and the total summary statistics?
+
+- What were the average daily ratings as white, black, and the overall average rating of each day?
+- What was the overall average rating for both me and my opponents?
+- Did I play more games as white or black? If so, by what ratio?
+- Does winning affect the likelihood of playing with certain pieces?
+- Do I lose more games as white or black?
+- What opening strategies led to the most wins?
+- How have my opening strategies evolved over time?
+- What is the win/loss ratio for each opening strategy?
+- Who were the weakest and toughest opponents I faced?
+- How many times did I win or lose against each opponent?
+- How many times did I play against each opponent?
+- How many moves did it take to win each game, and what was the duration of each game?
 
 
 
