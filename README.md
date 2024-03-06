@@ -2,7 +2,7 @@
 
 ## Introduction (to be edited in the end)
 
-As a passionate chess lover and data enthusiast, I set out on an exciting mission: to use the power of data analytics to boost my game. Fueled by my desire for more wins, I dove into my gaming history, searching for patterns and insights that could give me an edge. Now, join me as I unveil the results of my analysis, revealing how data-driven strategies can transform chess play into victory. In this analysis, I delve into the fascinating world of chess through the lens of data analytics. My goal? To uncover hidden patterns and strategic insights within my gameplay history that could elevate my performance on the board. With a keen eye for detail and a thirst for victory, I explore the depths of my gaming data to unlock secrets that can sharpen my tactical acumen and lead to more triumphs. 
+As a passionate chess lover and data enthusiast, I set out on an exciting mission: to use the power of data analytics to boost my game. Fueled by my desire for more wins, I dove into my gaming history, searching for patterns and insights that could give me an edge. Now, join me as I unveil the results of my analysis, revealing how data-driven strategies can transform chess play into victory. In this analysis, I delve into the fascinating world of chess through the lens of data analytics. My goal? To uncover hidden patterns and strategic insights within my live gameplay history that could elevate my performance on the board. With a keen eye for detail and a thirst for victory, I explore the depths of my gaming data to unlock secrets that can sharpen my tactical acumen and lead to more triumphs. 
 
 Exploring open data is like diving into a treasure trove, and chess.com offers a myriad of options to tap into that wealth. One avenue is downloading data from your archives in a PGN format. Yet, amidst the sea of information, navigating through the clutter can be a challenge. Enter [chessinsights.xyz](https://chessinsights.xyz/), a beacon of simplicity and utility in the vast ocean of chess data. Crafted by a fellow chess enthusiast, whom I am not affiliated with yet respect for the skills he put into such a web application, this website not only streamlines the analysis process but also provides access to raw data for further exploration. It's a testament to the power of community-driven tools, making complex analysis a breeze.
 
@@ -12,16 +12,19 @@ Therefore, leveraging PostgreSQL, R, and Python, I've curated the insights prese
 
 ## All about the data
 
-The data exported to a csv file from [chessinsights.xyz](https://chessinsights.xyz/) contains the following columns (I call it columns for now as its a raw data not yet extracted, transformmed nor loaded):
+The data needed is a history of live chess game plays played through two players from different parts of the world or among friends. The data is only fetched from live [chess.com](https://www.chess.com/) games. However, there are also other platforms such as [lichess.org](https://lichess.org), where one can get data on one's own game play.
+Two data were initially downloaded in a csv format from [chessinsights.xyz](https://chessinsights.xyz/), a raw data and a relatively cleaner raw data. The differences between the two are, the raw data conains so much more redundant information than the explorable data yet at the same time has no information loaded in some of the most important columns for analysis. For example, the column *result* doesn't show the win, loss or draw but shows the outcome of the game without specifying who checkmated who, who resigned and so on. That is something, that should be extracted by treating the two data as relational data. 
+The data exported to a csv file from [chessinsights.xyz](https://chessinsights.xyz/) contains the following columns (I call it columns for now as its a raw data have not yet went through ETL processes.):
 
 The raw data includes the following columns:
-userAccuracy	opponentAccuracy	gameUrl	gameId	timeClass	fen	userColor	userRating	opponent	opponentRating	opponentUrl	result	wonBy	date	openingUrl	opening	startTime	endTime	outcome	moveCount
 
 - userAccuracy: Accuracy of the player
+According to [chess.com/accuracy_blog](https://support.chess.com/article/1135-what-is-accuracy-in-analysis-how-is-it-measured#:~:text=Your%20Accuracy%20is%20a%20measurement,as%20determined%20by%20the%20engine.), Your accuracy is a measurement of how closely you played to what the computer has determined to be the best possible play against your opponent's specific moves. The closer you are to 100, the closer you are to 'perfect' play, as determined by the engine.
 - opponentAccuracy: Accuracy of the opponent
 - gameURL: reference to the specific game played
 - gameID: reference to the game ID
 - timeClass: the type of game, whether its rapid (a 10-minute long game), blitz (a 3-minute long game) or bullet (a 1-minute long game)
+- fen: a serial key of each game played
 - userColor: the color the player Played
 - userRating: the chess performance rating of the player. For reference on how it is calculated, please refer to [chess.com/ratings](https://www.chess.com/terms/chess-ratings#:~:text=The%20Glicko%20system%E2%80%94used%20on,when%20calculating%20each%20player's%20rating.) For your reference, the greatest chess player of all time, Magnus Carlsen, is rated 2830 as of March 1st, 2024. I was rated 962 in the same day. So you can imaging the performance difference.
 - opponent: shows the opponents userID
@@ -50,9 +53,38 @@ The explorable data includes:
 - Opponent
 - GameUrl Sort Ascending 
 
-However the raw data is just a complete mess, that I needed to transform. 
+However the raw data is just a complete mess, that I needed to transform. Once the data is imported to my local file. It should be important to create a database in SQL. Best way I found to do that is through R-studio. The argument is simple, it's much easier to create the [database in R](**R code for creating the database linke here), export it and when I need to do quantitative analysis, I could just import the database and extract the table that I need for further analysis. Although, it is also possible to do so in Python.
 
-According to [chess.com/accuracy_blog](https://support.chess.com/article/1135-what-is-accuracy-in-analysis-how-is-it-measured#:~:text=Your%20Accuracy%20is%20a%20measurement,as%20determined%20by%20the%20engine.), Your accuracy is a measurement of how closely you played to what the computer has determined to be the best possible play against your opponent's specific moves. The closer you are to 100, the closer you are to 'perfect' play, as determined by the engine. 
+### A bit of data exploration
+
+Both the raw data and the explorable data have the same number of rows. Theere are no missing values of the important columns that are needed for analysis. However, columns like *accuracy*, *userAccuracy*, or *opponentAccuracy* have missing values. The reason for the missing value is due to two reasons
+          - the payment subscription needed to show those measurements. Meaning that I have do not have premium subscription to [chess.com](https://www.chess.com/), then I can't access how my accuracy measures against my opponent
+          - the second reason is that the player didn't use a one-time a day game review offered by [chess.com](https://www.chess.com/) after the games have been played.
+The other column is *Won BY*, in the raw data, which is empty due to the mess of the raw data. However, this column is compensated by the *Result* column in the explorable data.
+Three type of chess games were played by the player, blitz, rapid and bullet. 
+
+There are several type of live game plays.
+-  Bullet = Games under 3 minutes.
+-  Blitz = Games over 3 minutes but under 10 minutes.
+-  Rapid = Games 10 minutes
+According to [live.chess](https://support.chess.com/article/330-why-are-there-different-ratings-in-live-chess#:~:text=Live%20Chess%20has%20three%20different,games%2010%20minutes%20and%20longer.), there are different types of skills involved, whether the game is long or short. Short games tend to be about fast thinking and wit while long games tend to be more tactical plays, with a meticulous attention to opening games, middle games and end games. There are also other variations of these three types of games, as listed on, [live.chess](https://support.chess.com/article/330-why-are-there-different-ratings-in-live-chess#:~:text=Live%20Chess%20has%20three%20different,games%2010%20minutes%20and%20longer.).
+
+Between the dates of June 27th, 2018 and March 2nd, 2024, I have played 2405 live games in total. Among the out of the 2405 total games, 64 games were dedicated to blitz games, 2336 were dedicated to rapid games and 5 to bullets. 97.13 % of all live games were 10 minutes. 
+
+Table 1: Summary of Live Chess Game Types Played
+
+| game_amount | game_type | percentage |
+|-------------|-----------|------------|
+| 64          | blitz     | 2.66 %     |
+| 5           | bullet    | 0.21 %     |
+| 2336        | rapid     | 97.13 %    |
+
+Source: [SQL code page]
+
+
+
+
+
 
 Methodology
 3.1 Tools and Technologies
