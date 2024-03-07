@@ -85,6 +85,8 @@ To explore the data thoroghly, without complicated analysis. I ask the following
 - What opening strategies led to the most wins?
 - How have my opening strategies evolved over time?
 - What is the win/loss ratio for each opening strategy?
+- What are the statistics regarding wins and losses in chess games based on different outcomes such as checkmate, resignation, and others?
+- How many wins were achieved through checkmate compared to other outcomes, and how do these numbers contrast with the losses experienced through similar outcomes?
 - Who were the weakest and toughest opponents I faced?
 - How many times did I win or lose against each opponent?
 - How many times did I play against each opponent?
@@ -156,6 +158,48 @@ Optionally, include additional details or supplementary information, such as raw
 Format and Style
 Maintain a professional tone and language throughout the report.
 Use clear headings, subheadings, and bullet points for easy readability.
+
+########################################
+Data Import and Overview
+Game Statistics
+Elo Ratings Analysis
+Opening Strategies
+Opponent Analysis
+Move Analysis
+Let's categorize the queries accordingly:
+
+Data Import and Overview
+Importing data from external sources into the database browser.
+Checking the structure and variables of the imported data.
+Game Statistics
+Checking raw data.
+Analyzing game types (blitz, rapid, bullet).
+Total games played.
+Percentage of game classes.
+Victory rate.
+Analysis of wins and losses.
+Most played openings.
+Elo Ratings Analysis
+Analysis of Elo ratings.
+Visualization of Elo ratings over time.
+Average Elo rating.
+Merging and visualizing Elo ratings for white and black players.
+Opening Strategies
+Analysis of openings.
+Win-loss ratio per opening.
+Adjusted win-loss ratio per opening.
+Average activity based on opening.
+Opponent Analysis
+Toughest and weakest opponents.
+Win-loss ratio against opponents.
+Most frequent opponents.
+Analysis of opponents' opening strategies.
+Move Analysis
+Analysis of the number of moves and time taken in games.
+Average moves and time per game.
+Average activity based on color and opponent.
+
+
 Ensure consistency in formatting and style, adhering to corporate standards.
 Include relevant visuals, but avoid cluttering the report with excessive graphics.
 
