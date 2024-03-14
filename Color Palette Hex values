@@ -1,3 +1,5 @@
+Palette
+
 #003f5c - Dark blue
 #2f4b7c - Blue
 #665191 - Purple blue
@@ -6,3 +8,25 @@
 #f95d6a - Pink
 #ff7c43 - Deem orange
 #ffa600 - Yellow
+
+Single Hue Scale (Blue)
+
+#004c6d - Dark
+#0c6185
+#19779d
+#238eb6
+#2ea6ce
+#39bfe7
+#45d8ff - Light
+
+Divergent Color Scale
+  Green
+#00876c -Dark
+#65a670
+#aac37a - Light
+  Orange
+#efdd91 -Light
+#ebad65
+#e57950 -Intense
+  Red
+#d43d51
