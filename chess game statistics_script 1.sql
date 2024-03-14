@@ -10,7 +10,16 @@ FROM chess_games;
 SELECT *
 FROM explorable_data;
 
---Data set 3
+--Data set 3: made based on the list of chess openings the user and the opponents used. The opening column was extracted
+
+CREATE TABLE openings AS
+SELECT DISTINCT opening
+FROM explorable_data;
+
+--onece the list is exported into a csv. Remaining columns were collected from lichess.org and wikipedia and loaded again.
+
+DROP TABLE openings;
+ 
 SELECT *
 FROM chess_openings;
 ----------------
