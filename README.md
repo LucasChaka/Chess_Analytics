@@ -79,7 +79,19 @@ Therefore, it would be easier to focus on the rapid games, for a more understand
 
 ![Chess Analytics Visuals-2 (1)_page-0001](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/78554bc5-7d8b-4e90-8143-39e7bd119f7d)
 
-Source: (upload the pbix file)
+Source: [chess game statistics_script 1.sql](https://github.com/LucasChaka/Chess_Analytics/blob/eda7e25f5e5ec0b883aac1b9c0a8379e3aca96e0/chess%20game%20statistics_script%201.sql)
+, (upload the pbix file)
+
+
+
+##**Dashboard 2: Study the openings**
+
+
+![Study the openings](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/d2c0ecc1-ac40-4e17-aeb4-05743d9788c8)
+
+Source: SQL file, (upload the pbix file)
+
+
 
 ## Detailed data exploration
 
