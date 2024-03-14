@@ -71,12 +71,15 @@ Table 2: Summary of Live Chess Game Types Played
 | 5           | bullet    | 0.21 %     |
 | 2336        | rapid     | 97.13 %    |
 
-Source: [chess game statistics_script 1](chess game statistics_script 1.sql)
+Source: [chess game statistics_script 1.sql](https://github.com/LucasChaka/Chess_Analytics/blob/eda7e25f5e5ec0b883aac1b9c0a8379e3aca96e0/chess%20game%20statistics_script%201.sql)
 
 Therefore, it would be easier to focus on the rapid games, for a more understanding of my own game play. 
 
-![Chess Analytics Visuals-2 (1)_page-0001](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/82fee9e7-4a99-41d8-a598-c4e370d79292)
+##**Dashboard 1: Chess Game Statistics**
 
+![Chess Analytics Visuals-2 (1)_page-0001](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/78554bc5-7d8b-4e90-8143-39e7bd119f7d)
+
+Source: (upload the pbix file)
 
 ## Detailed data exploration
 
