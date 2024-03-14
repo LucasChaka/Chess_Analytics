@@ -91,7 +91,11 @@ Source: [chess game statistics_script 1.sql](https://github.com/LucasChaka/Chess
 
 Source: SQL file, (upload the pbix file)
 
+##**Dashboard 3: Result per openings**
 
+![Result per openings](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/4bb8ce0c-1ed6-47d8-b355-7e6f65792e97)
+
+Source: SQL file, (upload the pbix file)
 
 ## Detailed data exploration
 
