@@ -151,3 +151,7 @@ FROM(
 		HAVING timeClass='rapid') AS c2
 	ON c1.rowid=c2.rowid) AS c4;
 
+----
+	
+
+
