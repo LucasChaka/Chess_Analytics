@@ -12,6 +12,15 @@ In theory, obtaining such data might be challenging, as most games occur over th
 
 ## Table of Contents
 
+                                                  Questions to answer
+                                                  - What are the best openings?
+                                                  - What can the user learn from its opponents?
+                                                  - Does the time of the day matter for wining and losing a game?
+                                                  - Is it better to play as white or as black?
+                                                  - Does the amount of time it takes 
+                                                  - Do previous games affect the outcome of the next game? (previous elo, previous game time duration, previous game move)?
+                                                  
+
 ## All about the data
 
 The data needed is a history of live chess game plays played through two players from different parts of the world or among friends. The data is only fetched from live [chess.com](https://www.chess.com/) games. However, there are also other platforms such as [lichess.org](https://lichess.org), where one can get data on one's own game play.
