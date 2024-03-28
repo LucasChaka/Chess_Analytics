@@ -122,7 +122,7 @@ WHERE TimeClass = 'rapid';
 ```
 Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
 
-The columns included in the raw data but not in the explorable data, namely *opponentRating*, *startTime*, and *endTime*, are deemed necessary. However, there is no immediate need to join these columns, as they can be extracted when required at a later point. The memory capacity of the local machine to accommodate one more data table is not an issue. Additionally, a new table named *play_time_count* is created. The creation of this table involves coding in R-studio and querying in SQL. The purpose of the table is to depict the time duration of each chess game played. Initially, the code in [Time length extracted.R]() was executed to create the data table. Once exported from R-studio to the SQL database, the following SQL code was used:
+The columns included in the raw data but not in the explorable data, namely *opponentRating*, *startTime*, and *endTime*, are deemed necessary. However, there is no immediate need to join these columns, as they can be extracted when required at a later point. The memory capacity of the local machine to accommodate one more data table is not an issue. Additionally, a new table named *play_time_count* is created. The creation of this table involves coding in R-studio and querying in SQL. The purpose of the table is to depict the time duration of each chess game played. Initially, the code in [Time length extracted.R](https://github.com/LucasChaka/Chess_Analytics/blob/b766d2e772b84cfcb8cd0fbd637e60131dbba590/R/Time%20length%20extracted.R) was executed to create the data table. Once exported from R-studio to the SQL database, the following SQL code was used:
 
 SQL Code 3: Creation of the "play_time_count" table depicting the time duration of each chess game played
 
@@ -163,6 +163,7 @@ DROP TABLE play_time;
 SELECT *
 FROM play_time_count;
 ```
+Source:
 
 These are the 4 data table pillars used throughout the analysis. All other tables created extract data and information from these 4 tables.
 
