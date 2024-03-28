@@ -51,7 +51,24 @@ Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
 
 Source: [chessinsights.xyz](https://chessinsights.xyz/)
 
-Additionally, distinct openings used by *John* are collected from the above data, with additional columns identifying whether the openings are theoretically associated with white or black play, indicating whether players are playing as white or black. Below are random 10 rows of these openings, providing insight into their structure:
+
+### Data Preprocessing 
+
+Once the initial two datasets are imported locally, as is common with most data, they undergo preprocessing. These datasets are then imported into R-studio, to create an SQL database.
+
+
+
+a light SQL version, SQLite and it's DB Browser.
+
+                    --Data set 1
+                    SELECT *
+                    FROM chess_games; 
+                    
+                    --Data set 2
+                    SELECT *
+                    FROM explorable_data;
+
+The first dataset is the raw data, while the explorable data is the second dataset. Once the datasets are loaded in, distinct openings used by *John* are collected from the above data, with additional columns collected separately from [lichess.org](https://lichess.org)'s chess opening study guides, identifying whether the openings are theoretically associated with white or black play, indicating whether players are playing as white or black. Below are random 10 rows of these openings, providing insight into their structure:
 
 Table 2: Random chess openings and their theoritical move.
 
@@ -66,9 +83,9 @@ Table 2: Random chess openings and their theoritical move.
 | Petrov's Defense            | 1.e4 e5 2.Nf3 Nf6 | Black  |
 | Englund Gambit              | 1.d4 e5 2.dxe5 Nc6| Black  |
 
-Source: SQL/Chess game statistics_script 1.sql , line 23
+Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
 
-![image](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/4be112cc-dbbe-4154-803b-468f91214e02)
+Once the data is imported to my local file. It should be important to create a database in SQL. Best way I found to do that is through R-studio. The argument is simple, it's much easier to create the [database in R](**R code for creating the database linke here), export it and when I need to do quantitative analysis, I could just import the database and extract the table that I need for further analysis. Although, it is also possible to do so in Python.
 
 
 Sources: The data used in this analysis was collected from [specify sources, e.g., Chess.com API, internal databases].
