@@ -10,7 +10,7 @@ While obtaining such data may pose a challenge, particularly with most games occ
 
 However, individual player analyses have inherent limitations; for instance, the range of chess openings is constrained to the player under scrutiny. Yet, leveraging data from top chess masters can broaden the analytical scope. 
 
-**DISCLAIMER:** For privacy reasons, the player's username remains undisclosed. Analysts interested in conducting similar macro analyses can obtain data from [chessinsights.xyz](https://chessinsights.xyz/). Throughout this report, the player is referenced by the pseudonym *John*."
+**DISCLAIMER:** For privacy reasons, the player's username remains undisclosed. Analysts interested in conducting similar macro analyses can obtain data from [chessinsights.xyz](https://chessinsights.xyz/). Throughout this report, the player is referenced by the pseudonym *John*.
 
 ## Methodology
 
