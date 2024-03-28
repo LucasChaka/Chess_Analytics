@@ -30,7 +30,7 @@ Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
 | opponentAccuracy   | -                      | Reflects the opponent's accuracy, measuring their adherence to optimal moves as determined by the [chess.com](https://www.chess.com/) engine.           |
 | gameURL            | GameUrl                | Direct link to the specific game played.                                                                           |
 | gameID             | -                      | Unique identifier for the game.                                                                                     |
-| timeClass          | TimeClass              | Specifies the game type: rapid (10-minute and above), blitz (3-minutes), or bullet (1-minute).                                |
+| timeClass          | TimeClass              | Specifies the game type: rapid (games lasting 10-minutes and above), blitz (games lasting 3-minutes), or bullet (games lasting 1-minute).                                |
 | fen                | -                      | Serial key for each game.                                                                                           |
 | userColor          | Color                  | Indicates the player's color: white or black.                                                                       |
 | userRating         | Rating                 | Player's chess performance rating, refered to commonly as Elo rating.                                                                                  |
@@ -188,10 +188,32 @@ Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927
 
 ### A general data overview: What can we learn about the data?
 
-The 
- 
+Initially, the first thing that comes to mind for any chess enthusiast is what is commonly and mistakenly referred to as the Elo score, a less modified version of the Glicko rating system. According to [Dr. Mark E. Glickman, The Glicko System](http://www.glicko.net/glicko/glicko.pdf), the Glicko system is a modified Elo rating system that assesses the strength of a player in zero-sum two-player games. (Please refer to the full mathematical function of the rating system on [Dr. Mark E. Glickman](http://www.glicko.net/glicko/glicko.pdf)). However, for the generality associated with calling the rating system "the Elo score", the report will refer to the rating system as the Elo rating going forward. It should be noted here that the rating score of [lichess.org](https://lichess.org) is different from the Elo rating of [chess.com](https://www.chess.com/).
 
+Chess players, especially online chess players, practice to increase their Elo score over time. Elo scores can help a player assess their level, whether beginner, intermediate, master, or grandmaster. The following table depicts the hierarchy of Elo scores:
 
+Table 5: Elo Rating Hierarchy
+
+| Rating range       | Title                           |
+|--------------------|---------------------------------|
+| 2800+ Elo          | World Champion                  |
+| 2700-2800 Elo      | World Championship contender    |
+| 2600-2700 Elo      | Super Grandmaster               |
+| 2500-2600 Elo      | Grandmaster                     |
+| 2400-2500 Elo      | International Master            |
+| 2200-2400 Elo      | Master                          |
+| 2000-2200 Elo      | Expert                          |
+| 1800-2000 Elo      | Class A - Strong club player    |
+| 1600-1800 Elo      | Class B - Club team player      |
+| 1400-1600 Elo      | Class C - Club player           |
+| 1200-1400 Elo      | Class D - Hobby player          |
+| 1000-1200 Elo      | Class E - Advanced beginner     |
+| 750-1000 Elo       | Class F - Beginner/novice       |
+| Below 750 Elo      | Complete beginner               |
+
+Source: [www.hiarcs.com](https://www.hiarcs.com/hce-manual/pc/Eloratings.html), [chess.com/elo-rating-chess](https://www.chess.com/terms/elo-rating-chess)
+
+John has played 2336 rapid games for almost a year. 
 
 
 
