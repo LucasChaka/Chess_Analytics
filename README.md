@@ -13,9 +13,7 @@ However, individual player analyses have inherent limitations; for instance, the
 **DISCLAIMER:** For privacy reasons, the player's username remains undisclosed. Analysts interested in conducting similar macro analyses can obtain data from [chessinsights.xyz](https://chessinsights.xyz/). Throughout this report, the player is referenced by the pseudonym *John*."
 
 ## Methodology
-                      3.	Methodology
-                      •	Describe the methods and techniques used for data collection and analysis.
-                      •	Explain any assumptions made and limitations encountered during the analysis.
+
 ### Data Collection
 
 The data utilized in this analysis primarily originates from [chessinsights.xyz](https://chessinsights.xyz/), a web application designed for chess enthusiasts and data scientists. Users can input a specific username registered on [chess.com](https://www.chess.com/) to access a comprehensive list of raw data alongside a limited set of visualizations tailored for analytical purposes. These data sets encapsulate a history of live chess games played across different geographical regions or among friends, providing valuable insights into players' performance. It's worth noting that alternative platforms such as [lichess.org](https://lichess.org) also offer similar data accessibility.
@@ -52,7 +50,7 @@ Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
 Source: [chessinsights.xyz](https://chessinsights.xyz/)
 
 
-### Data Preprocessing 
+### Data Preprocessing: The ETL process
 
 Once the initial two datasets are imported locally, as is common with most data, they undergo preprocessing. These datasets are then imported into R-studio to create an SQL database. Please refer to the R code in the GitHub file [Chess Database Setup.R](https://github.com/LucasChaka/Chess_Analytics/blob/cd813ace82649e8cf67aca36db64211f8ca67b58/R/Chess%20Database%20Setup.R). Once the database is created, it is stored in a light SQL version, SQLite, along with its DB Browser.
 
@@ -163,61 +161,35 @@ DROP TABLE play_time;
 SELECT *
 FROM play_time_count;
 ```
-Source:
+Source: [SQL script 5](https://github.com/LucasChaka/Chess_Analytics/blob/b9c9857711589c7436e557b412fe57d7ab4802ec/SQL/Move%20and%20time%20difference._script%205.sql)
 
-These are the 4 data table pillars used throughout the analysis. All other tables created extract data and information from these 4 tables.
+These are the four foundational data tables used throughout the analysis. All other tables created extract data and information from these four tables.
+
+Therefore, the report forward will focus on analyzing the following variables using SQL (SQLite DB browser), Python (Pandas, Matplotlib and Numpy libraries) and several R packages:
+
+Table 4: Important Variables Overview
+
+| chess_games       | rapid        | chess_openings | play_time_count | 
+|-------------------|--------------|----------------|-----------------|
+| date              | date         | date           | date            |  
+| opponentRating    | user_color   | Opening        | gameId          | 
+| startTime         | result       | Move           | startTime       | 
+| endTime           | rating       | Color          | endTime         |
+| -                 | move         | -              | time_difference_in_minutes  | 
+| -                 | outcome      | -              | -              | 
+| -                 | opening      | -              | -              | 
+| -                 | opponent     | -              | -              | 
+| **2405 rows**         | **2336 rows**    | **51 rows**        | **2336 rows**     |
+
+Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), [SQL script 5](https://github.com/LucasChaka/Chess_Analytics/blob/b9c9857711589c7436e557b412fe57d7ab4802ec/SQL/Move%20and%20time%20difference._script%205.sql) 
 
 
+## Analysis
 
-Therefore, the report will focus on analyzing the following variables:
+### A general data overview: What can we learn about the data?
 
-Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
-
-| chess_games   | rapid | chess_openings                                                                                                         |
-|--------------------|------------------------|---------------------------------------------------------------------------------------------------------------------|
-|    -                | date                 | Date of the game played.                                             |
-| -              | user_color               | Opponent's user ID/name.                                                                                                |
-| -         | result                      | Win, lose or draw.                                                                                                 |
-| -           | rating                     | Player's rating.                                                                                       |
-| -                | Result                 | Outcome of the game: win, loss, or draw.                                                                            |
-| -                  | move                  | The amount of move the game took.                                                                                           |
-| -           | outcome                     | Specific game outcome, e.g., checkmate, abandonment, resignation, or draw.                                 |
-| -               | opening                | Type of theoritical opening employed in the game.                                                                           
-| -                | opponent                |                                           |
-
-
-
+The 
  
-
-Sources: The data used in this analysis was collected from [specify sources, e.g., Chess.com API, internal databases].
-Scope: The dataset comprises [describe the scope of the data, e.g., chess game records] spanning from [start date] to [end date].
-Variables: The main variables included in the dataset are [list key variables, e.g., game outcome, opening moves, player ratings].
-Preprocessing: Before analysis, the data underwent preprocessing steps to [describe any data cleaning, transformation, or normalization procedures].
-Analysis Techniques:
-Descriptive Analysis: Initial exploration of the dataset involved descriptive statistics to summarize the characteristics and distributions of the variables.
-Exploratory Data Analysis (EDA): EDA techniques, such as data visualization and summary statistics, were employed to identify patterns, trends, and outliers in the data.
-Statistical Analysis: Various statistical tests, including [specify tests, e.g., t-tests, chi-square tests], were conducted to investigate relationships between variables and test hypotheses.
-Machine Learning Models: Machine learning algorithms, such as [specify algorithms, e.g., logistic regression, decision trees], were utilized for predictive modeling or classification tasks.
-Software and Tools:
-Programming Languages: The analysis was performed using [specify programming languages, e.g., R, Python] for data manipulation, analysis, and visualization.
-Statistical Packages: Statistical packages such as [specify packages, e.g., pandas, scikit-learn] were utilized for conducting statistical analyses and building machine learning models.
-Visualization Tools: Visualization tools such as [specify tools, e.g., Matplotlib, ggplot2] were employed to create visualizations for interpreting and presenting the results.
-Assumptions and Limitations:
-Assumptions: Certain assumptions were made during the analysis, including [list any assumptions, e.g., normality of data distribution, independence of observations].
-Limitations: The analysis is subject to certain limitations, such as [describe any limitations, e.g., data quality issues, sample size constraints], which may impact the generalizability of the findings.
-Ethical Considerations:
-Data Privacy: Measures were taken to ensure data privacy and confidentiality, adhering to [specify relevant data privacy regulations, e.g., GDPR, HIPAA].
-Bias and Fairness: Efforts were made to mitigate bias and ensure fairness in the analysis, including [describe steps taken, e.g., algorithmic fairness checks, bias detection methods].
-Validation and Verification:
-Validation: The results of the analysis were validated through [describe validation procedures, e.g., cross-validation, sensitivity analysis] to assess the robustness and reliability of the findings.
-Verification: The analysis process was verified through [specify verification methods, e.g., peer review, code review] to ensure accuracy and reproducibility.
-This methodology outlines the approach and procedures followed in conducting the analysis, providing transparency and clarity to the reader.
-
-
-
-
-
-
 
 
 
