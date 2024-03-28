@@ -58,14 +58,15 @@ Once the initial two datasets are imported locally, as is common with most data,
 
 SQL code 1: The two data sets
 
-                    --Data set 1
-                    SELECT *
-                    FROM chess_games; 
-                    
-                    --Data set 2
-                    SELECT *
-                    FROM explorable_data;
+```sql
+--Data set 1
+SELECT *
+FROM chess_games; 
 
+--Data set 2
+SELECT *
+FROM explorable_data;
+```
 Source: [Chess Database Setup.R](https://github.com/LucasChaka/Chess_Analytics/blob/cd813ace82649e8cf67aca36db64211f8ca67b58/R/Chess%20Database%20Setup.R), [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
 
 The first dataset is the raw data, while the explorable data is the second dataset. Once the datasets are loaded in, distinct openings used by *John* are collected from the above data, with additional columns collected separately from [lichess.org](https://lichess.org)'s chess opening study guides, identifying whether the openings are theoretically associated with white or black play, indicating whether players are playing as white or black. Below are random 10 rows of these openings, providing insight into their structure:
@@ -106,23 +107,68 @@ Next, by extracting 8 variables from the explorable data, a new data table calle
 
 SQL Code 2: Creation of the "rapid" data table
 
-
-
-              CREATE TABLE rapid AS
-              SELECT Date AS date, 
-              	   Color AS user_color, 
-              	   Result AS result, 
-              	   Rating AS rating, 
-              	   Moves AS move, 
-              	   Outcome AS outcome, 
-              	   Opening AS opening, 
-              	   Opponent AS opponent
-              FROM explorable_data
-              WHERE TimeClass = 'rapid';
-
+```sql
+CREATE TABLE rapid AS
+SELECT Date AS date, 
+     Color AS user_color, 
+     Result AS result, 
+     Rating AS rating, 
+     Moves AS move, 
+     Outcome AS outcome, 
+     Opening AS opening, 
+     Opponent AS opponent
+FROM explorable_data
+WHERE TimeClass = 'rapid';
+```
 Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
 
-The columns included in the raw data but not in the explorable data, namely *opponentRating*, *startTime*, and *endTime*, are deemed necessary. However, there is no immediate need to join these columns, as they can be extracted when required at a later point. The memory capacity of the local machine to accommodate one more data table is not an issue. Therefore, the report will focus on analyzing the following variables:
+The columns included in the raw data but not in the explorable data, namely *opponentRating*, *startTime*, and *endTime*, are deemed necessary. However, there is no immediate need to join these columns, as they can be extracted when required at a later point. The memory capacity of the local machine to accommodate one more data table is not an issue. Additionally, a new table named *play_time_count* is created. The creation of this table involves coding in R-studio and querying in SQL. The purpose of the table is to depict the time duration of each chess game played. Initially, the code in [Time length extracted.R]() was executed to create the data table. Once exported from R-studio to the SQL database, the following SQL code was used:
+
+SQL Code 3: Creation of the "play_time_count" table depicting the time duration of each chess game played
+
+```sql
+-- Extract the time each game took
+SELECT date, startTime, endTime 
+FROM chess_games 
+WHERE timeClass ='rapid';					
+
+-- Refer to the R code on how the minutes are extracted 
+SELECT *
+FROM play_time;
+
+-- Joining tables and managing data
+SELECT *
+FROM rapid AS c1 
+INNER JOIN play_time AS c2	
+ON c1.ROWID=c2.ROWID
+WHERE time_difference_in_minutes LIKE '-%'; -- Negative time differences do not make sense and will be managed again in R.
+
+-- New data table without negative time differences
+SELECT *
+FROM play_time_count
+WHERE time_difference_in_minutes LIKE '-%'; 
+
+-- Corrected time differences and variables
+SELECT *
+FROM play_time_count
+WHERE TRIM(date) >= '2023.03.12' AND TRIM(date) >= '2023.04.15'; 
+
+-- Example of corrected game with negative result
+SELECT date, startTime, endTime, time_difference_in_minutes
+FROM play_time_count 
+WHERE gameId = 72403983381.0;
+
+DROP TABLE play_time;
+
+SELECT *
+FROM play_time_count;
+```
+
+These are the 4 data table pillars used throughout the analysis. All other tables created extract data and information from these 4 tables.
+
+
+
+Therefore, the report will focus on analyzing the following variables:
 
 Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
 
