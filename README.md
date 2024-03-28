@@ -54,11 +54,9 @@ Source: [chessinsights.xyz](https://chessinsights.xyz/)
 
 ### Data Preprocessing 
 
-Once the initial two datasets are imported locally, as is common with most data, they undergo preprocessing. These datasets are then imported into R-studio, to create an SQL database.
+Once the initial two datasets are imported locally, as is common with most data, they undergo preprocessing. These datasets are then imported into R-studio to create an SQL database. Please refer to the R code in the GitHub file [Chess Database Setup.R](https://github.com/LucasChaka/Chess_Analytics/blob/cd813ace82649e8cf67aca36db64211f8ca67b58/R/Chess%20Database%20Setup.R). Once the database is created, it is stored in a light SQL version, SQLite, along with its DB Browser.
 
-
-
-a light SQL version, SQLite and it's DB Browser.
+SQL code 1: The two data sets
 
                     --Data set 1
                     SELECT *
@@ -67,6 +65,8 @@ a light SQL version, SQLite and it's DB Browser.
                     --Data set 2
                     SELECT *
                     FROM explorable_data;
+
+Source: [Chess Database Setup.R](https://github.com/LucasChaka/Chess_Analytics/blob/cd813ace82649e8cf67aca36db64211f8ca67b58/R/Chess%20Database%20Setup.R), [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
 
 The first dataset is the raw data, while the explorable data is the second dataset. Once the datasets are loaded in, distinct openings used by *John* are collected from the above data, with additional columns collected separately from [lichess.org](https://lichess.org)'s chess opening study guides, identifying whether the openings are theoretically associated with white or black play, indicating whether players are playing as white or black. Below are random 10 rows of these openings, providing insight into their structure:
 
@@ -85,8 +85,62 @@ Table 2: Random chess openings and their theoritical move.
 
 Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
 
-Once the data is imported to my local file. It should be important to create a database in SQL. Best way I found to do that is through R-studio. The argument is simple, it's much easier to create the [database in R](**R code for creating the database linke here), export it and when I need to do quantitative analysis, I could just import the database and extract the table that I need for further analysis. Although, it is also possible to do so in Python.
+The dataset contains a large volume of data with numerous unnecessary details, necessitating a strategic data cleaning process. Initially, a total of 2405 games were played between June 27th, 2018, and March 2nd, 2024. However, the majority of games played from February 20th, 2023, to March 2nd, 2024, were rapid games (lasting 10 minutes or more). Therefore, only rapid games are extracted from the "TimeClass" variable in the explorable data.
 
+Table 3: Frequency of Chess Game Types
+
+| Amount of games played | TimeClass | Share, in % |
+|-------------------------|-----------|------------|
+| 64                      | blitz     | 2.66 %     |
+| 5                       | bullet    | 0.21 %     |
+| 2336                    | rapid     | 97.13 %    |
+
+Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
+
+Both the raw data and the explorable data contain the same number of rows, and there are no missing values in the important columns required for analysis. However, columns such as *accuracy*, *userAccuracy*, or *opponentAccuracy* may have missing values due to two primary reasons:
+
+- A paid subscription on [chess.com](https://www.chess.com/) is required to access accuracy measurements, making it difficult to obtain data, especially if *John* doesn't have a full subscription.
+- The player may not have utilized the one-time free game review offered by [chess.com](https://www.chess.com/) after the games were played. [chess.com](https://www.chess.com/) provides a one-time daily free game review, which includes *userAccuracy* and *opponentAccuracy* data.
+
+Next, by extracting 8 variables from the explorable data, a new data table called "rapid" is created in the database.
+
+SQL Code 2: Creation of the "rapid" data table
+
+
+
+              CREATE TABLE rapid AS
+              SELECT Date AS date, 
+              	   Color AS user_color, 
+              	   Result AS result, 
+              	   Rating AS rating, 
+              	   Moves AS move, 
+              	   Outcome AS outcome, 
+              	   Opening AS opening, 
+              	   Opponent AS opponent
+              FROM explorable_data
+              WHERE TimeClass = 'rapid';
+
+Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql)
+
+The columns included in the raw data but not in the explorable data, namely *opponentRating*, *startTime*, and *endTime*, are deemed necessary. However, there is no immediate need to join these columns, as they can be extracted when required at a later point. The memory capacity of the local machine to accommodate one more data table is not an issue. Therefore, the report will focus on analyzing the following variables:
+
+Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
+
+| chess_games   | rapid | chess_openings                                                                                                         |
+|--------------------|------------------------|---------------------------------------------------------------------------------------------------------------------|
+|    -                | date                 | Date of the game played.                                             |
+| -              | user_color               | Opponent's user ID/name.                                                                                                |
+| -         | result                      | Win, lose or draw.                                                                                                 |
+| -           | rating                     | Player's rating.                                                                                       |
+| -                | Result                 | Outcome of the game: win, loss, or draw.                                                                            |
+| -                  | move                  | The amount of move the game took.                                                                                           |
+| -           | outcome                     | Specific game outcome, e.g., checkmate, abandonment, resignation, or draw.                                 |
+| -               | opening                | Type of theoritical opening employed in the game.                                                                           
+| -                | opponent                |                                           |
+
+
+
+ 
 
 Sources: The data used in this analysis was collected from [specify sources, e.g., Chess.com API, internal databases].
 Scope: The dataset comprises [describe the scope of the data, e.g., chess game records] spanning from [start date] to [end date].
