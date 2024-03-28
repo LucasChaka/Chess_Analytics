@@ -1,5 +1,5 @@
 
-											--MOVES AND TIME IT TAKES THE USER TO WIN OR LOSE A GAME 
+						--MOVES AND TIME IT TAKES THE USER TO WIN OR LOSE A GAME 
 
 --Extract the time each game took as well.
 											
@@ -32,6 +32,7 @@ WHERE TRIM(date) >= '2023.03.12' AND TRIM(date) >= '2023.04.15';--the time diffe
 SELECT date, startTime, endTime, time_difference_in_minutes
 FROM play_time_count 
 WHERE gameId = 72403983381.0; 
+
 
 
 
@@ -182,12 +183,109 @@ ORDER BY 6 DESC;--white openings
 ---Depict the relationship between move and time it takes on a scatter plot
 
 
-CREATE TABLE time_move_ratio AS
+CREATE TABLE time_move_rates AS
 SELECT c1.date, 
 	   ROUND(AVG(c1.time_difference_in_minutes),2) AS daily_average_time_difference, 
 	   ROUND(AVG(c2.move),2) AS daily_average_move,
-	   ROUND((SUM(CASE WHEN result = 'win' THEN 1 ELSE 0 END)*1.0/SUM(CASE WHEN result = 'loss' THEN 1 ELSE 0 END)),2) AS daily_win_lose_ratio
+	   ROUND((SUM(CASE WHEN result = 'win' THEN 1 ELSE 0 END)*1.0/SUM(CASE WHEN result = 'loss' THEN 1 ELSE 0 END)),2) AS daily_win_lose_ratio,
+	   SUM(CASE WHEN result = 'win' THEN 1 ELSE 0 END) AS daily_wins,
+	   SUM(CASE WHEN result = 'loss' THEN 1 ELSE 0 END) AS daily_losses,
+	   SUM(CASE WHEN result = 'draw' THEN 1 ELSE 0 END) AS daily_draws
 FROM play_time_count AS c1
 INNER JOIN rapid AS c2
 ON c1.ROWID=c2.ROWID
 GROUP BY 1;
+
+
+
+--Is a large amount of move or time difference correlated with the result? For example, if the user moves a lot is it likely that the user ends up winning the game because he or she dedicates time on the game?
+
+
+							---Therefore, the above query also depics the total amount of daily wins, daily losses and daily draws. To see the correlation with amount of average moves.
+
+
+
+--time of the day analysis.
+
+							---first set 00:00:00 to 05:59:00
+							---2nd set 06:00:00 to 11:59:00
+							---3rd set 12:00:00 t0 17:59:00
+							---4th set 18:00:00 to 23:59:00
+
+SELECT *
+FROM(							
+		SELECT *,
+				CASE
+				WHEN TIME(startTime) >= '00:00:00' AND TIME(startTime) < '05:59:00' THEN 'night'
+				WHEN TIME(startTime) >= '06:00:00' AND TIME(startTime) < '11:59:00' THEN 'morning'
+				WHEN TIME(startTime) >= '12:00:00' AND TIME(startTime) < '17:59:00' THEN 'afternoon'
+				ELSE 'evening'
+			END AS start_period,
+			CASE
+				WHEN TIME(endTime) >= '00:00:00' AND TIME(endTime) < '05:59:00' THEN 'night'
+				WHEN TIME(endTime) >= '06:00:00' AND TIME(endTime) < '11:59:00' THEN 'morning'
+				WHEN TIME(endTime) >= '12:00:00' AND TIME(endTime) < '17:59:00' THEN 'afternoon'
+				ELSE 'evening'
+			END AS end_period
+		FROM play_time_count) AS c1--the query classifies the time of day into four however, there are instances where the games played lie in the classification borders
+WHERE start_period != end_period; --this query shows those border periods. Instead of using a case clause to create a variable as "if start_period is afternoon
+								  --and end_period is evening, then evening. It is best to only consider the end period as the time of day. Also in cases where the user has abandoned
+								  --the game due to other activities, the end_period can capture that better than the start period. However, the element of urgency while playing the game after starting 
+								  --the game may not be captured by the end_period.
+								  
+
+								  
+CREATE TABLE period AS							  
+SELECT *,
+		CASE
+			WHEN TIME(endTime) >= '00:00:00' AND TIME(endTime) < '05:59:00' THEN 'night'
+			WHEN TIME(endTime) >= '06:00:00' AND TIME(endTime) < '11:59:00' THEN 'morning'
+			WHEN TIME(endTime) >= '12:00:00' AND TIME(endTime) < '17:59:00' THEN 'afternoon'
+			ELSE 'evening'
+		END AS period
+FROM play_time_count;
+
+SELECT *
+FROM period;
+
+--which time period has the most amount of games played?
+
+SELECT period, COUNT(period) AS amount_of_games_played, ROUND(COUNT(period) *1.0/ SUM(COUNT(period)) OVER () * 100, 2) AS percentage
+FROM period
+GROUP BY 1;
+
+						---1024 games were played between 12 o'clock and 18 o'clock accounting for 43.84% of all games.
+						
+--Does the time of the day affect the users game result?
+
+CREATE TABLE result_by_period AS
+SELECT period, 
+       result,
+       COUNT(period) AS amount_of_games_played, 
+       ROUND(COUNT(period) * 1.0 / SUM(COUNT(period)) OVER () * 100, 2) AS percentage
+FROM (
+    SELECT *
+    FROM period AS c1
+    INNER JOIN rapid AS c2 
+	ON c1.ROWID = c2.ROWID) AS c3
+GROUP BY 1,2
+ORDER BY 4 DESC;
+
+						---Afternoons have the most losses and wins because games played there are the largest. Therefore, by dividing the amount of result by the amount of games played in the time period
+						---For example, loss amount divided by the amount of games all games played in the afternoon. It is possible to know the winning and losing rate based on the time of the day.
+						
+CREATE TABLE result_rate_per_period AS				
+SELECT 
+    period,
+    ROUND(SUM(CASE WHEN result = 'win' THEN 1 ELSE 0 END) * 1.0 / COUNT(period),2) AS win_rate,
+    ROUND(SUM(CASE WHEN result = 'loss' THEN 1 ELSE 0 END) * 1.0 / COUNT(period),2) AS loss_rate,
+    ROUND(SUM(CASE WHEN result = 'draw' THEN 1 ELSE 0 END) * 1.0 / COUNT(period),2) AS draw_rate
+FROM (
+    SELECT *
+    FROM period AS c1
+    INNER JOIN rapid AS c2 ON c1.ROWID = c2.ROWID
+) AS c3
+GROUP BY 1;
+
+						---Based on the above table, playing in the morning has the highest winning rate, as the user is assumed to be focused. The user has a higher losing rate in the evening as the user is tired from his/her daily activity
+						---The significance might not be know for known until advanced analysis is conducted through a logistics regression.
