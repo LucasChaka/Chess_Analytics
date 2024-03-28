@@ -66,7 +66,7 @@ Table 2: Random chess openings and their theoritical move.
 | Petrov's Defense            | 1.e4 e5 2.Nf3 Nf6 | Black  |
 | Englund Gambit              | 1.d4 e5 2.dxe5 Nc6| Black  |
 
-Source: 
+Source: SQL/Chess game statistics_script 1.sql , line 23
 
 ![image](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/4be112cc-dbbe-4154-803b-468f91214e02)
 
