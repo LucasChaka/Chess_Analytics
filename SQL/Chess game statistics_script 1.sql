@@ -21,7 +21,8 @@ FROM explorable_data;
 DROP TABLE openings;
  
 SELECT *
-FROM chess_openings;
+FROM chess_openings
+LIMIT 10;
 ----------------
 
 --Amount of game played
@@ -29,7 +30,7 @@ FROM chess_openings;
 SELECT COUNT(*) AS amount_of_games_played, MAX(Date) AS last_date, MIN(Date) AS first_date
 FROM explorable_data;
 
---Table 2: Summary of Live Chess Game Types Played 
+--Summary of Live Chess Game Types Played 
 
 SELECT 
     COUNT(*) AS game_amount, 
