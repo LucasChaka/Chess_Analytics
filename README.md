@@ -165,7 +165,7 @@ Source: [SQL script 5](https://github.com/LucasChaka/Chess_Analytics/blob/b9c985
 
 These are the four foundational data tables used throughout the analysis. All other tables created extract data and information from these four tables.
 
-Therefore, the report forward will focus on analyzing the following variables using SQL (SQLite DB browser), Python (Pandas, Matplotlib and Numpy libraries) and several R packages:
+Therefore, the report forward will focus on analyzing the following variables using SQL (SQLite DB browser), Python (Pandas, Matplotlib and Numpy libraries), several R packages and PowerBI for visualization:
 
 Table 4: Important Variables Overview
 
@@ -182,6 +182,8 @@ Table 4: Important Variables Overview
 | **2405 rows**         | **2336 rows**    | **51 rows**        | **2336 rows**     |
 
 Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), [SQL script 5](https://github.com/LucasChaka/Chess_Analytics/blob/b9c9857711589c7436e557b412fe57d7ab4802ec/SQL/Move%20and%20time%20difference._script%205.sql) 
+
+To conduct the visualization, the four data tables are imported from the database to PowerBI using [ODBC](https://learn.microsoft.com/en-us/sql/odbc/reference/what-is-odbc?view=sql-server-ver16). [ODBC](https://learn.microsoft.com/en-us/sql/odbc/reference/what-is-odbc?view=sql-server-ver16) is a library containing data access routines, which makes it easier to create a pipeline between SQLite and PowerBI. For further information on how to link ODBC with PowerBI, please refer to [docs.devart.com](https://docs.devart.com/odbc/sqlite/powerbi.htm).
 
 
 ## Analysis
