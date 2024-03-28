@@ -2,33 +2,73 @@
 
 ## Introduction (to be edited in the end)
 
-A lot of people who know the rules of chess but don't really play it much think that you win chess solely by focusing on how the pieces move tactically. However, chess encompasses much more than that. Opening theories, for instance, can lead to swift victories, with some resulting in as few as three moves (such as the scholar's mate). The middle game, once both players have positioned their pieces for later attacks, involves numerous tactics and strategies, ranging from basic ones like skewers, forks, and pins to more advanced techniques like zugzwang, and so forth. These tactics can ultimately determine the outcome of the endgame, which may have been anticipated by both players, one player, or neither.
+Many individuals who grasp the rules of chess but don't engage in it frequently believe that winning solely hinges on tactical maneuvering. However, chess encompasses far more than mere tactics. Opening theories, for example, can lead to swift victories, some unfolding in as few as three moves (such as the scholar's mate). The middle game, after players have strategically positioned their pieces, involves a plethora of tactics and strategies, ranging from basic skewers, forks, and pins to more intricate techniques like zugzwang. These maneuvers often dictate the outcome of the endgame, which may have been foreseen by both players, one, or neither.
 
-A strong opening can pave the way for a strong middle game or endgame. Additionally, the end game, in turn, also depends on the knowledge of the player, focus at the time of play, and other factors that may or may not be noticed at the time of play. However, achieving a positive endgame result (a win) often requires meticulous analysis of each game in the hope of improving future ones. Such analyses require a careful overview of each game played: What mistakes were made? Which moves were good or efficient? This preparation is crucial for the next game. But what about a macro analysis, where it's possible to review all the games played thus far, holistically? This would involve examining which openings have been advantageous for the player, what openings opponents of the player's caliber typically employ, player's strengths, weaknesses, strongest opponents, and so on. This comprehensive review can guide the player in understanding their style of play, areas of improvement, which openings to practice, what their top opponents did best, and much more.
+A strong opening sets the stage for a robust middle game or endgame. Furthermore, the endgame itself relies heavily on the player's knowledge, focus, and other factors, whether acknowledged at the time or not. However, achieving a favorable endgame result often demands meticulous analysis of each game, aiming to enhance future performance. Such scrutiny involves a detailed review: identifying errors, evaluating effective moves, and preparing for subsequent matches. But what about a macro analysis, which offers a holistic review of all games played by one individual instead of one specific game? This comprehensive approach includes examining all advantageous openings used, common strategies among opponents of similar caliber, as well as the player's strengths, weaknesses, and noteworthy opponents.
 
-In theory, obtaining such data might be challenging, as most games occur over the board without any formal recording, except perhaps at the professional level where players document each move. While this method is ideal for studying chess greats like Gary Kasparov or Magnus Carlsen, it offers only a micro or individual analysis of games played by others, not necessarily at the beginner or intermediate level. However, in recent years, particularly after the Netflix limited series "The Queen's Gambit," chess, especially online chess, has surged in popularity, leading to a significant increase in subscribers on platforms like [chess.com](https://www.chess.com/) and [lichess.org](https://lichess.org). With such subscription increment, comes a system where every game is recorded, providing detailed insights into each move and overall gameplay.
+While obtaining such data may pose a challenge, particularly with most games occurring without formal recording, recent years, especially post Netflix's limited series, "The Queen's Gambit", have witnessed a surge in chess's popularity, particularly online. Platforms like [chess.com](https://www.chess.com/) and [lichess.org](https://lichess.org) have seen significant subscription increases, resulting in detailed game recordings and insights. [chess.com](https://www.chess.com/) provides opportunities through a PGN format, while web applications such as [chessinsights.xyz](https://chessinsights.xyz/) offer raw data, streamlining analysis processes. This report aims to delve into a player's gameplay, offering macro and holistic perspectives for improvement.
 
-[chess.com](https://www.chess.com/) offers such opportunities through a PGN format. Moreover, there has been increasing emphasis on chess data, with web applications such as [chessinsights.xyz](https://chessinsights.xyz/) created by chess enthusiast web developers and data scientists, offering raw data on all games played, streamlining the messy nature of PGN files. This analytics report aims to provide insights into a single player's gameplay, facilitating improvements from a macro and holistic perspective. Nonetheless, a single player's analysis has its own limitations. For instance, the number of chess openings used will be limited to the player being analyzed. However, an additional analysis based on the following report can be constructed by analyzing the data of the top 10 chess masters and what chess enthusiasts can learn from them.
+However, individual player analyses have inherent limitations; for instance, the range of chess openings is constrained to the player under scrutiny. Yet, leveraging data from top chess masters can broaden the analytical scope. 
 
-Disclaimer: For privacy purposes, the username of the player will not be reported here. However, analysts looking to conduct a thorough macro analysis of their own or other players can download the required data from [chessinsights.xyz](https://chessinsights.xyz/). For the remainder of the analysis, this report assigns the pseudonym *John* to the player being analyzed.
-
-3.	Methodology
-•	Describe the methods and techniques used for data collection and analysis.
-•	Explain any assumptions made and limitations encountered during the analysis.
+**DISCLAIMER:** For privacy reasons, the player's username remains undisclosed. Analysts interested in conducting similar macro analyses can obtain data from [chessinsights.xyz](https://chessinsights.xyz/). Throughout this report, the player is referenced by the pseudonym *John*."
 
 ## Methodology
-
+                      3.	Methodology
+                      •	Describe the methods and techniques used for data collection and analysis.
+                      •	Explain any assumptions made and limitations encountered during the analysis.
 ### Data Collection
 
-The data used in the following analysis was mainly collected from [chessinsights.xyz](https://chessinsights.xyz/). [chessinsights.xyz](https://chessinsights.xyz/) is a web application where individuals can put in a specific user name registered in [chess.com](https://www.chess.com/) and get a full list of raw data and a small amount of visualizations for analysis purpose. The data downloaded are a history of live chess game plays played through two players from different parts of the world or among friends. Hence, *John*'s live chess game data.  Here to note is that, there are also other platforms such as [lichess.org](https://lichess.org), where one can get data on a player's game play.
-Two data were initially downloaded in a csv format, a raw data and a relatively cleaner raw data. The differences between the two are, the raw data conains so much more redundant information than the explorable data yet at the same time has no information loaded in some of the most important columns for analysis. 
+The data utilized in this analysis primarily originates from [chessinsights.xyz](https://chessinsights.xyz/), a web application designed for chess enthusiasts and data scientists. Users can input a specific username registered on [chess.com](https://www.chess.com/) to access a comprehensive list of raw data alongside a limited set of visualizations tailored for analytical purposes. These data sets encapsulate a history of live chess games played across different geographical regions or among friends, providing valuable insights into players' performance. It's worth noting that alternative platforms such as [lichess.org](https://lichess.org) also offer similar data accessibility.
 
+Initially, two sets of data were downloaded in CSV format: the raw data and a relatively cleaner version, which in the following report will be refered to as the *explorable data*. While the raw data offers a wealth of information and variables, its presentation can be somewhat messy. Conversely, the cleaner dataset, though less extensive, is more organized and easier to navigate. However, it's essential to recognize that certain variables available in the cleaner dataset may not be present in the raw data. Thus, to ensure comprehensive analysis, it's advisable to leverage both datasets in tandem.
 
+The data exported to a CSV file from [chessinsights.xyz](https://chessinsights.xyz/) encompasses various columns (referred to as such for now, as the data is raw and has not yet undergone any ETL processes).
 
-For example, the column *result* doesn't show the win, loss or draw but shows the outcome of the game without specifying who checkmated who, who resigned and so on. That is something, that should be extracted by treating the two data as relational data. 
+Table 1: Summary of Chess Game Data: Raw and Explorable Data Comparison
 
+| Raw Data Column   | Explorable Data Column | Description                                                                                                         |
+|--------------------|------------------------|---------------------------------------------------------------------------------------------------------------------|
+| userAccuracy       | Accuracy               | Indicates the player's accuracy, reflecting how closely they adhered to optimal moves as determined by the [chess.com](https://www.chess.com/) engine. |
+| opponentAccuracy   | -                      | Reflects the opponent's accuracy, measuring their adherence to optimal moves as determined by the [chess.com](https://www.chess.com/) engine.           |
+| gameURL            | GameUrl                | Direct link to the specific game played.                                                                           |
+| gameID             | -                      | Unique identifier for the game.                                                                                     |
+| timeClass          | TimeClass              | Specifies the game type: rapid (10-minute and above), blitz (3-minutes), or bullet (1-minute).                                |
+| fen                | -                      | Serial key for each game.                                                                                           |
+| userColor          | Color                  | Indicates the player's color: white or black.                                                                       |
+| userRating         | Rating                 | Player's chess performance rating, refered to commonly as Elo rating.                                                                                  |
+| opponent           | Opponent               | Opponent's user ID/name.                                                                                                |
+| opponentRating     | -                      | Opponent's ratings.                                                                                                 |
+| opponentUrl        | -                      | Link to the opponent's page.                                                                                        |
+| result             | Result                 | Outcome of the game: win, loss, or draw.                                                                            |
+| date               | Date                   | Date of the game.                                                                                                   |
+| openingURL         | -                      | URL displaying theoretical opening moves, generally included in the PGN file.                                                                          |
+| opening            | Opening                | Type of theoritical opening employed in the game.                                                                               |
+| startTime          | -                      | Start time of the live game.                                                                                        |
+| endTime            | -                      | End time of the live game.                                                                                          |
+| pgn                | -                      | All theoritical moves made during the game. E.g. e4 e5 N3...etc                                                                                    |
+| moveCount          | Moves                  | Total number of moves in the game.                                                                                  |
+| outcome            | Outcome                | Specific game outcome, e.g., checkmate, abandonment, resignation, or draw.                                          |
 
+Source: [chessinsights.xyz](https://chessinsights.xyz/)
 
+Additionally, distinct openings used by *John* are collected from the above data, with additional columns identifying whether the openings are theoretically associated with white or black play, indicating whether players are playing as white or black. Below are random 10 rows of these openings, providing insight into their structure:
+
+Table 2: Random chess openings and their theoritical move.
+
+| Opening                     | Move               | Color  |
+|-----------------------------|--------------------|--------|
+| Nimzowitsch Larsen Attack   | 1.e4 Nf6 2.Nc3    | White  |
+| Philidor Defense            | 1.e4 e5 2.Nf3 d6  | Black  |
+| French Defense              | 1.e4 e6           | Black  |
+| Queen's Pawn Opening        | 1.d4              | White  |
+| Scandinavian Defense        | 1.e4 d5           | Black  |
+| Reti Opening                | 1.Nf3             | White  |
+| Petrov's Defense            | 1.e4 e5 2.Nf3 Nf6 | Black  |
+| Englund Gambit              | 1.d4 e5 2.dxe5 Nc6| Black  |
+
+Source: 
+
+![image](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/4be112cc-dbbe-4154-803b-468f91214e02)
 
 
 Sources: The data used in this analysis was collected from [specify sources, e.g., Chess.com API, internal databases].
