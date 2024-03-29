@@ -235,9 +235,9 @@ Additionally, John's overestimation of his capabilities can further be realized 
 
 Figure 3: A boxplot visualization of Jon's Elo ratings
 
-![Figure 3](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/3f8670b4-6b4d-46af-845e-235f98ebbdee)
+![Fig 3](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/242d42c1-bb75-490d-8b30-1138c0108ae8)
 
-Source: 
+Source: [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
 
 
