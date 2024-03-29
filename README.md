@@ -239,28 +239,36 @@ Figure 3: A boxplot visualization of Jon's Elo ratings
 
 Source: [Box plot.ipynb](https://github.com/LucasChaka/Chess_Analytics/blob/1ba11d04f3f08bee1da40b2d18d8f10547d13673/Python/Box%20plot.ipynb), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-Overall, John has played 2336 rapid games between February, 2023 and March 2024. Outof those games he won 1128 games, lost 1123 games and resulted in a draw in 85 games. Additionally, he played 1.03 times more as black than white, playing 1185 games as a black player and 1151 times as a white player. Looking at his results by color, he had 576 wins, 526 losses and 49 draws as a white player and 552 wins, 597 losses and 36 draws as a black player, as depicted in figure 4. So what does this say about John's playing pattern? Nothing much except that ho is more likely to lose as a black player than a white player. This goes well with Chess theory. Normally, starting as a white player opens up opportunities to attack while black player's tend to defend their pieces more. 
 
-Figure 4: A dashboard 
+ **Understanding John's Playing Pattern**
 
-![Fig 4](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/a4fa1e10-d1f5-4aa5-b58c-47d8092ca392)
+Overall, John has played 2336 rapid games between February 2023 and March 2024. Out of those games, he won 1128 games, lost 1123 games, and resulted in a draw in 85 games. Additionally, he played 1.03 times more as black than white, playing 1185 games as a black player and 1151 times as a white player. Looking at the overall average rating of John compared to his opponents, there is no difference. On average, his opponents are rated 739.8, while John himself is rated 739.91, showing [chess.com](https://www.chess.com/)'s fair algorithm.
 
-To see this thoroughly, what does the result look by outcome, color of the chess pieces and result. As depicted in figure 5(a) and figure 5(b)
+Looking at his results by color, he had 576 wins, 526 losses, and 49 draws as a white player and 552 wins, 597 losses, and 36 draws as a black player, as depicted in **Figure 4**. So what does this say about John's playing pattern? Nothing much except that he is more likely to lose as a black player than a white player. But then, why is John more likely to lose as a black player than white?
 
+Figure 4: A dashboard
 
+![Figure 4](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/a4fa1e10-d1f5-4aa5-b58c-47d8092ca392)
 
+[SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-Figure 5(a): Amount of each outcome when John plays as white
-![Fig 5 A white](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/6e347d30-1b7c-4094-9bf0-4255fdd8e018)
+Nonetheless, to better understand the above figure, it might be necessary to look at the results by outcome and color of the chess pieces. 
 
-Source:
+### Figure 5(a): Amount of each outcome when John plays as white
 
+![Figure 5(a) White](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/6e347d30-1b7c-4094-9bf0-4255fdd8e018)
 
-Figure 5(b): Amount of each outcome when John plays as black
-![Fig 5 B black](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/457f675f-caee-4f8f-8fba-8edb41269171)
+### Figure 5(b): Amount of each outcome when John plays as black
 
-Source:
+![Figure 5(b) Black](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/457f675f-caee-4f8f-8fba-8edb41269171)
 
+However, to deduce deeper insights, let's examine the results by outcome and color of the chess pieces.
+
+Looking at Figure 5(a) and 5(b), John has 330 losses through resignation as a white player and 352 game resignations as a black player. While both charts depict similar outcomes, it's not clear if John actually loses more as a black player than a white player.
+
+### Mathematical Analysis
+
+Considering that black plays 1.03 times more often, we can normalize the data. If black played 1.03 times more as black then, white resigns approximately 339.9 times on average when normalized to equal the total amount of times John played through each color. However, this is still less than the actual number of resignations (352) as a black player. This suggests that John tends to resign more frequently when playing as black. This could indicate a weakness in his defense, as playing as black typically requires a more defensive strategy.
 
 
 
