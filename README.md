@@ -215,19 +215,20 @@ Table 5: Elo Rating Hierarchy
 
 Source: [www.hiarcs.com](https://www.hiarcs.com/hce-manual/pc/Eloratings.html), [chess.com/elo-rating-chess](https://www.chess.com/terms/elo-rating-chess)
 
-The Elo score depicted over time shows the player's improvment over time. If an individual plays regularly, it is expected to see a positive trend over time. John's Elo is a very good example of such an improvment as depicted below.
+The Elo score depicted over time shows the player's improvement over time. If an individual plays regularly, it is expected to see a positive trend over time. John's Elo is a very good example of such an improvement as depicted below.
 
-Figure 1: John's daily aggeregated Elo rating over time.
+Figure 1: John's daily aggregated Elo rating over time.
 
-![Fig 1](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/ff1a1087-0e6d-4950-8cac-f953abf03303)
+![Figure 1](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/ff1a1087-0e6d-4950-8cac-f953abf03303)
 
 Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-John's Elo score droped significantly from February 2023 to around end of March 2023. The resason can be due to the overestimation John has regarding his own capabilities. When first registering on [chess.com](https://www.chess.com/), novice players can overestimate their skill as intermediate hence, the jump from the average daily maximum elo score of 1,101.6 to 569.2. However, there is a volatile elo variation until the trend starts to go up from around the beginning of July, 2023, reaching advanced beginner level and sticking in the 90th percentile. On average, John's elo score is 739.91, with his median being less, a mere 696.25 elo score. This depicts the elo score distribution of john is skewed to the right over time. The following figure shows, John's histogram against the density line
+John's Elo score dropped significantly from February 2023 to around the end of March 2023. The reason can be due to the overestimation John has regarding his own capabilities. When first registering on [chess.com](https://www.chess.com/), novice players can overestimate their skill as intermediate, hence the jump from the average daily maximum Elo score of 1,101.6 to 569.2. However, there is a volatile Elo variation until the trend starts to go up from around the beginning of July 2023, reaching the advanced beginner level and sticking in the 90th percentile. On average, John's Elo score is 739.91, with his median being less, a mere 696.25 Elo score. This depicts the Elo score distribution of John is skewed to the right over time. The following figure shows John's histogram against the density line.
 
 Figure 2: John's Elo score distribution
 
-![Fig 2](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/b3dd3baf-8bdd-4345-851f-75a44b3c2e33)
+![Figure 2](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/b3dd3baf-8bdd-4345-851f-75a44b3c2e33)
 
-Source: [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
+Source: [Python_histogram](https://github.com/LucasChaka/Chess_Analytics/blob/42f1b89dd80f712c082999ee6686867f033d2945/Python/Python_histogram.ipynb), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
+
 
