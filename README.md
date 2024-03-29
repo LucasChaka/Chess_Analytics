@@ -174,7 +174,7 @@ Table 4: Important Variables Overview
 | date              | date         | date           | date            |  
 | opponentRating    | user_color   | Opening        | gameId          | 
 | startTime         | result       | Move           | startTime       | 
-| endTime           | rating       | Color          | endTime         |
+| endTime           | rating (User rating)      | Color          | endTime         |
 | -                 | move         | -              | time_difference_in_minutes  | 
 | -                 | outcome      | -              | -              | 
 | -                 | opening      | -              | -              | 
@@ -225,10 +225,23 @@ Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927
 
 John's Elo score dropped significantly from February 2023 to around the end of March 2023. The reason can be due to the overestimation John has regarding his own capabilities. When first registering on [chess.com](https://www.chess.com/), novice players can overestimate their skill as intermediate, hence the jump from the average daily maximum Elo score of 1,101.6 to 569.2. However, there is a volatile Elo variation until the trend starts to go up from around the beginning of July 2023, reaching the advanced beginner level and sticking in the 90th percentile. On average, John's Elo score is 739.91, with his median being less, a mere 696.25 Elo score. This depicts the Elo score distribution of John is skewed to the right over time. The following figure shows John's histogram against the density line.
 
-Figure 2: John's Elo score distribution
+Figure 2: John's Elo rating (User rating) distribution
 
 ![Figure 2](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/b3dd3baf-8bdd-4345-851f-75a44b3c2e33)
 
 Source: [Python_histogram](https://github.com/LucasChaka/Chess_Analytics/blob/42f1b89dd80f712c082999ee6686867f033d2945/Python/Python_histogram.ipynb), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
+
+Additionally, John's overestimation of his capabilities can further be realized by the yellow dots on the following box plot. Almost all of the yellow dots are above approximately 1070. However, these outliers will be treated as true outliers as they show an aspect of John's behavior.
+
+Figure 3: A boxplot visualization of Jon's Elo ratings
+
+![Figure 3](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/3f8670b4-6b4d-46af-845e-235f98ebbdee)
+
+Source: 
+
+
+
+
+
 
 
