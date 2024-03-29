@@ -237,10 +237,29 @@ Figure 3: A boxplot visualization of Jon's Elo ratings
 
 ![Fig 3](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/242d42c1-bb75-490d-8b30-1138c0108ae8)
 
-Source: [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
+Source: [Box plot.ipynb](https://github.com/LucasChaka/Chess_Analytics/blob/1ba11d04f3f08bee1da40b2d18d8f10547d13673/Python/Box%20plot.ipynb), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
+
+Overall, John has played 2336 rapid games between February, 2023 and March 2024. Outof those games he won 1128 games, lost 1123 games and resulted in a draw in 85 games. Additionally, he played 1.03 times more as black than white, playing 1185 games as a black player and 1151 times as a white player. Looking at his results by color, he had 576 wins, 526 losses and 49 draws as a white player and 552 wins, 597 losses and 36 draws as a black player, as depicted in figure 4. So what does this say about John's playing pattern? Nothing much except that ho is more likely to lose as a black player than a white player. This goes well with Chess theory. Normally, starting as a white player opens up opportunities to attack while black player's tend to defend their pieces more. 
+
+Figure 4: A dashboard 
+
+![Fig 4](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/a4fa1e10-d1f5-4aa5-b58c-47d8092ca392)
+
+To see this thoroughly, what does the result look by outcome, color of the chess pieces and result. As depicted in figure 5(a) and figure 5(b)
 
 
 
+
+Figure 5(a): Amount of each outcome when John plays as white
+![Fig 5 A white](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/6e347d30-1b7c-4094-9bf0-4255fdd8e018)
+
+Source:
+
+
+Figure 5(b): Amount of each outcome when John plays as black
+![Fig 5 B black](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/457f675f-caee-4f8f-8fba-8edb41269171)
+
+Source:
 
 
 
