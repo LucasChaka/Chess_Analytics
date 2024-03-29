@@ -18,7 +18,7 @@ However, individual player analyses have inherent limitations; for instance, the
 
 The data utilized in this analysis primarily originates from [chessinsights.xyz](https://chessinsights.xyz/), a web application designed for chess enthusiasts and data scientists. Users can input a specific username registered on [chess.com](https://www.chess.com/) to access a comprehensive list of raw data alongside a limited set of visualizations tailored for analytical purposes. These data sets encapsulate a history of live chess games played across different geographical regions or among friends, providing valuable insights into players' performance. It's worth noting that alternative platforms such as [lichess.org](https://lichess.org) also offer similar data accessibility.
 
-Initially, two sets of data were downloaded in CSV format: the raw data and a relatively cleaner version, which in the following report will be refered to as the *explorable data*. While the raw data offers a wealth of information and variables, its presentation can be somewhat messy. Conversely, the cleaner dataset, though less extensive, is more organized and easier to navigate. However, it's essential to recognize that certain variables available in the cleaner dataset may not be present in the raw data. Thus, to ensure comprehensive analysis, it's advisable to leverage both datasets in tandem.
+Initially, two sets of data were downloaded in CSV format: the raw data (refered to as *chess_games* in the SQL scripts) and a relatively cleaner version, which in the following report will be refered to as the *explorable data*. While the raw data offers a wealth of information and variables, its presentation can be somewhat messy. Conversely, the cleaner dataset, though less extensive, is more organized and easier to navigate. However, it's essential to recognize that certain variables available in the cleaner dataset may not be present in the raw data. Thus, to ensure comprehensive analysis, it's advisable to leverage both datasets in tandem.
 
 The data exported to a CSV file from [chessinsights.xyz](https://chessinsights.xyz/) encompasses various columns (referred to as such for now, as the data is raw and has not yet undergone any ETL processes).
 
@@ -163,7 +163,7 @@ FROM play_time_count;
 ```
 Source: [SQL script 5](https://github.com/LucasChaka/Chess_Analytics/blob/b9c9857711589c7436e557b412fe57d7ab4802ec/SQL/Move%20and%20time%20difference._script%205.sql)
 
-These are the four foundational data tables used throughout the analysis. All other tables created extract data and information from these four tables.
+These are the four foundational data tables used throughout the analysis. All the other 39 tables created are extracted and queried from these four tables.
 
 Therefore, the report forward will focus on analyzing the following variables using SQL (SQLite DB browser), Python (Pandas, Matplotlib and Numpy libraries), several R packages and PowerBI for visualization:
 
@@ -215,9 +215,10 @@ Table 5: Elo Rating Hierarchy
 
 Source: [www.hiarcs.com](https://www.hiarcs.com/hce-manual/pc/Eloratings.html), [chess.com/elo-rating-chess](https://www.chess.com/terms/elo-rating-chess)
 
-John has played 2336 rapid games for almost a year. 
+The Elo score depicted over time shows the player's improvment over time. If an individual plays regularly, it is expected to see a positive trend over time. John's Elo is a very good example of such an improvment as depicted below.
 
+Figure 1: John's Elo rating over time.
 
+![Fig 1](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/ff1a1087-0e6d-4950-8cac-f953abf03303)
 
-
-
+Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), 
