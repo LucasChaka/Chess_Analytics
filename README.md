@@ -12,7 +12,7 @@ However, individual player analyses have inherent limitations; for instance, the
 
 **DISCLAIMER:** For privacy reasons, the player's username remains undisclosed. Analysts interested in conducting similar macro analyses can obtain data from [chessinsights.xyz](https://chessinsights.xyz/). Throughout this report, the player is referenced by the pseudonym *John*.
 
-## Methodology
+## Methodology: Behind the analysis
 
 ### Data Collection
 
@@ -190,7 +190,7 @@ To conduct the visualization, the four data tables are imported from the databas
 
 ### A general data overview: What can we learn about the data?
 
-Initially, the first thing that comes to mind for any chess enthusiast is what is commonly and mistakenly referred to as the Elo score, a less modified version of the Glicko rating system. According to [Dr. Mark E. Glickman, The Glicko System](http://www.glicko.net/glicko/glicko.pdf), the Glicko system is a modified Elo rating system that assesses the strength of a player in zero-sum two-player games. (Please refer to the full mathematical function of the rating system on [Dr. Mark E. Glickman](http://www.glicko.net/glicko/glicko.pdf)). However, for the generality associated with calling the rating system "the Elo score", the report will refer to the rating system as the Elo rating going forward. It should be noted here that the rating score of [lichess.org](https://lichess.org) is different from the Elo rating of [chess.com](https://www.chess.com/).
+Initially, the first thing that comes to mind for any chess enthusiast is what is commonly and mistakenly referred to as the Elo score, a less modified version of the Glicko rating system. According to [Dr. Mark E. Glickman, author of the Glicko System](http://www.glicko.net/glicko/glicko.pdf), the Glicko system is a modified Elo rating system that assesses the strength of a player in zero-sum two-player games. (Please refer to the full mathematical function of the rating system on [Dr. Mark E. Glickman](http://www.glicko.net/glicko/glicko.pdf)). However, for the generality associated with calling the rating system "the Elo score", the report will refer to the rating system as the Elo rating going forward. It should be noted here that the rating score of [lichess.org](https://lichess.org) is different from the Elo rating of [chess.com](https://www.chess.com/).
 
 Chess players, especially online chess players, practice to increase their Elo score over time. Elo scores can help a player assess their level, whether beginner, intermediate, master, or grandmaster. The following table depicts the hierarchy of Elo scores:
 
@@ -223,7 +223,7 @@ Figure 1: John's daily aggregated Elo rating over time.
 
 Source: [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-John's Elo score dropped significantly from February 2023 to around the end of March 2023. The reason can be due to the overestimation John has regarding his own capabilities. When first registering on [chess.com](https://www.chess.com/), novice players can overestimate their skill as intermediate, hence the jump from the average daily maximum Elo score of 1,101.6 to 569.2. However, there is a volatile Elo variation until the trend starts to go up from around the beginning of July 2023, reaching the advanced beginner level and sticking in the 90th percentile. On average, John's Elo score is 739.91, with his median being less, a mere 696.25 Elo score. This depicts the Elo score distribution of John is skewed to the right over time. The following figure shows John's histogram against the density line.
+John's Elo score dropped significantly from February 2023 to around the end of March 2023. The reason can be due to the overestimation John has regarding his own capabilities. When first registering on [chess.com](https://www.chess.com/), novice players can overestimate their skill as intermediate, hence the jump from the average daily maximum Elo score of 1,101.6 to 569.2. However, there is a volatile Elo variation until the trend starts to pick up from around the beginning of July 2023, reaching the advanced beginner level and sticking in the 90th percentile. On average, John's Elo score is 739.91, with his median being less, a mere 696.25 Elo score. This depicts the Elo score distribution of John is skewed to the right over time. The following figure shows John's histogram against the density line.
 
 Figure 2: John's Elo rating (User rating) distribution
 
@@ -231,7 +231,7 @@ Figure 2: John's Elo rating (User rating) distribution
 
 Source: [Python_histogram](https://github.com/LucasChaka/Chess_Analytics/blob/42f1b89dd80f712c082999ee6686867f033d2945/Python/Python_histogram.ipynb), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-Additionally, John's overestimation of his capabilities can further be realized by the yellow dots on the following box plot. Almost all of the yellow dots are above approximately 1070. However, these outliers will be treated as true outliers as they show an aspect of John's behavior.
+Additionally, John's overestimation of his capabilities can further be realized by the yellow dots on the following box plot. Almost all of the yellow dots are above approximately 1070. Those values are shown in Figure 1 around February 2023 before the Elo rating plummets. However, these outliers will be treated as true outliers as they show an aspect of John's behavior.
 
 Figure 3: A boxplot visualization of Jon's Elo ratings
 
@@ -240,37 +240,62 @@ Figure 3: A boxplot visualization of Jon's Elo ratings
 Source: [Box plot.ipynb](https://github.com/LucasChaka/Chess_Analytics/blob/1ba11d04f3f08bee1da40b2d18d8f10547d13673/Python/Box%20plot.ipynb), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
 
- **Understanding John's Playing Pattern**
-
 Overall, John has played 2336 rapid games between February 2023 and March 2024. Out of those games, he won 1128 games, lost 1123 games, and resulted in a draw in 85 games. Additionally, he played 1.03 times more as black than white, playing 1185 games as a black player and 1151 times as a white player. Looking at the overall average rating of John compared to his opponents, there is no difference. On average, his opponents are rated 739.8, while John himself is rated 739.91, showing [chess.com](https://www.chess.com/)'s fair algorithm.
 
-Looking at his results by color, he had 576 wins, 526 losses, and 49 draws as a white player and 552 wins, 597 losses, and 36 draws as a black player, as depicted in Figure 4. So what does this say about John's playing pattern? Nothing much except that he is more likely to lose as a black player than a white player. But then, why is John more likely to lose as a black player than white?
 
-Figure 4: A dashboard
+Figure 4: The chess game review dashboard
 
 ![Figure 4](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/a4fa1e10-d1f5-4aa5-b58c-47d8092ca392)
 
 [SQL script 1](https://github.com/LucasChaka/Chess_Analytics/blob/048927b76de71e8c17a3cda6af770641c0271b5c/SQL/Chess%20game%20statistics_script%201.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-### Early Concessions?: Decoding John's Struggles as a Black Player
+### A patzer's problem: Inside John's Chess Game Outcomes
 
-According to general chess theory and [chess.com forums](https://www.chess.com/forum/view/chess-openings/im-confused-about-white-vs-blacks-openings#:~:text=in%20general%2C%20opening%20is%20for,e4%20c5%202.), starting as a white player opens up opportunities to attack, while black players tend to defend their pieces more. Thus, it can be argued that John's defense might be weaker. However, in chess and many other sports, the best defense is usually a strategic attack. 
+Although John has a win rate of 48.29% compared to a 48.07% loss rate, Figure 4 does not depict the specific outcomes of those wins or losses. It's important to understand whether the wins or losses were due to checkmate, resignation, abandonment, agreed draws, and so on. John has experienced nine types of outcomes.
 
-To better answer the question of why John is more likely to lose as a black player than a white one, it is neccesary to examine John's game results by the color of the chess pieces and the outcome.
+### Figure 5: Outcome of Games
 
-Figure 5(a): Amount of each outcome when John plays as white
-
-![Figure 5(a) White](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/6e347d30-1b7c-4094-9bf0-4255fdd8e018)
+![Figure 6](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/dfb5e9d0-8e13-43b5-80bf-b46a31617938)
 
 Source: [SQL script 4](https://github.com/LucasChaka/Chess_Analytics/blob/4e76f12f89e93624301ef53ee56b9b8dfa7c6ad7/SQL/Outcome%20statistics_script%204.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
-Figure 5(b): Amount of each outcome when John plays as black
+Out of all John's games, 1155 (approximately 49%) ended in resignation. Of these, 682 games (59%) were initiated by John, while 473 games (40%) were instigated by his opponents. Additionally, roughly 36% of games (850) concluded with a checkmate. Checkmate victories outnumber losses by 104 games, with 477 checkmate wins and 373 checkmate losses.
 
-![Figure 5(b) Black](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/457f675f-caee-4f8f-8fba-8edb41269171)
+Games ending in timeout are particularly intriguing. Timeouts occur when one player is inefficient with time, indicating a lack of tactical knowledge or hurried decision-making. Though timeout wins exceed losses and are fewer than resignation games, they might contribute to the overall resignation losses. John's quick decision-making might lead to resignations upon realizing that his moves were leading to inevitable checkmates, potentially indicating a lack of strategic planning and novice gameplay, a *Patzer's* problem.
+
+Interestingly, losses due to checkmate support the notion that John's tactical knowledge might be limited, a common trait among novice players. Such losses often stem from a lack of defensive strategy and passive responses to opponents' moves. Comparing the number of losses due to checkmate and resignation, the latter significantly outweighs the former. This suggests that while John may anticipate impending checkmates, he lacks the necessary tactical expertise to effectively counter those checkmates, hence resigning quite a lot and revealing a weakness in tactical knowledge.
+
+### Early Concessions?: Decoding John's Struggles as a Black Player
+
+According to general chess theory and [chess.com forums](https://www.chess.com/forum/view/chess-openings/im-confused-about-white-vs-blacks-openings#:~:text=in%20general%2C%20opening%20is%20for,e4%20c5%202.), starting as a white player opens up opportunities to attack, while black players tend to defend their pieces more. 
+
+Looking at John's results by color, he had 576 wins, 526 losses, and 49 draws as a white player and 552 wins, 597 losses, and 36 draws as a black player, as depicted in Figure 4. So what does this say about John's playing pattern? Nothing much except that he is more likely to lose as a black player than a white player. But then, why is John more likely to lose as a black player than white? 
+
+To better answer the question of why John is more likely to lose as a black player than a white one, it is neccesary to examine John's game results by the color of the chess pieces and the outcome.
+
+Figure 6(a): Amount of each outcome when John plays as white
+
+![Fig 5 A white](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/9ea6869f-feed-43f2-ad45-ecd3207fcace)
+
+Source: [SQL script 4](https://github.com/LucasChaka/Chess_Analytics/blob/4e76f12f89e93624301ef53ee56b9b8dfa7c6ad7/SQL/Outcome%20statistics_script%204.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
+
+Figure 6(b): Amount of each outcome when John plays as black
+
+![Fig 5 B black](https://github.com/LucasChaka/Chess_Analytics/assets/140816619/686e2b12-eb14-4a3c-91ab-9b77d0502df1)
 
 Source: [SQL script 4](https://github.com/LucasChaka/Chess_Analytics/blob/4e76f12f89e93624301ef53ee56b9b8dfa7c6ad7/SQL/Outcome%20statistics_script%204.sql), [Chess Analytics Visuals](https://github.com/LucasChaka/Chess_Analytics/blob/850df4810b7da93186b8362fcc5907cb2f7e13c8/PowerBI/Chess%20Analytics%20Visuals.pbix)
 
 When examining the above charts, it's evident that John has 330 losses through resignation as a white player and 352 game resignations as a black player. Although both charts depict similar outcomes, it's not clear if John actually loses more as a black player than as a white player. However, considering that black plays 1.03 times more often, we can normalize the values to have an equal proportion as per the [proportionality relationship](https://study.com/academy/lesson/representing-proportional-relationships-by-equations.html#:~:text=A%20proportional%20relationship%20is%20a%20relationship%20between%20two%20variables%20that,ratio%20between%20the%20two%20variables.) law of mathematics. If black played 1.03 times more as black then, white resigns approximately 339.9 times on average. However, this is still less than the actual number of resignations (352) as a black player. This suggests that John tends to resign more frequently when playing as black. This could be due to the reason that as John's defensive strategy is weak, he loses confidence during the game when he really needs to defend his black pieces, leading to resignation.
+
+
+
+
+
+
+
+
+
+
 
 
 
